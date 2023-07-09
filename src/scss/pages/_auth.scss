@@ -1,0 +1,23 @@
+@use 'base/variables' as v;
+
+.login {
+
+  padding: 4rem 0;
+  background-color: v.$yellow;
+  min-height: 100vh;
+
+  h1 {
+    margin-bottom: 4rem;
+  }
+
+}
+
+.alerts {
+  text-align: left;
+  margin-top: 3rem;
+  color: v.$red;
+
+  .alert {
+    margin-top: .5rem;
+  }
+}

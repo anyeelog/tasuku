@@ -1,0 +1,25 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.actions {
+  margin-top: 5rem;
+  text-align: center;
+  color: v.$black;
+
+  p, a {
+    font-size: 1.6rem;
+  }
+
+  a {
+    color: v.$yellow;
+    font-weight: 500;
+  }
+
+  .verified-login {
+    @include m.button(v.$black, v.$white);
+    padding: 2rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+    border-radius: 2rem;
+  }
+}
