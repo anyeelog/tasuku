@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <h1>Tasuku.</h1>
+    <h1><a href="/">Tasuku.</a></h1>
     <p class="tagline">Create and manage your projects</p>
 
 
@@ -44,7 +44,7 @@
             foreach($alerts as $key => $alert) {
               foreach($alert as $message) {
           ?>
-            <li class="alert"><?php echo $message; ?></li>
+            <li class="alert <?php echo $key ?>"><?php echo $message; ?></li>
           <?php
               }
             }

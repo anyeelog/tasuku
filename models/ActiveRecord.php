@@ -15,11 +15,11 @@ class ActiveRecord {
 
     // Set DB connection - includes/database.php
     public static function setDB($database) {
-        self::$db = $database;
+      self::$db = $database;
     }
 
     public static function setAlert($type, $message) {
-        static::$alerts[$type][] = $message;
+      static::$alerts[$type][] = $message;
     }
 
     // Validation
@@ -112,7 +112,6 @@ class ActiveRecord {
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
 
-        // debuguear($query);
 
         $result = self::$db->query($query);
         return $result;
@@ -131,7 +130,7 @@ class ActiveRecord {
 
         // Iterar los resultados
         $array = [];
-        while($entry = $entry->fetch_assoc()) {
+        while($entry = $result->fetch_assoc()) {
             $array[] = static::createObject($entry);
         }
 
@@ -155,22 +154,21 @@ class ActiveRecord {
     }
 
 
-
     // Identificar y unir los atributos de la BD
-    public function atributos() {
-        $atributos = [];
-        foreach(static::$columnasDB as $columna) {
-            if($columna === 'id') continue;
-            $atributos[$columna] = $this->$columna;
+    public function attributes() {
+        $attributes = [];
+        foreach(static::$columnsDB as $column) {
+            if($column === 'id') continue;
+            $attributes[$column] = $this->$column;
         }
-        return $atributos;
+        return $attributes;
     }
 
     public function sanitizeAttributes() {
         $attributes = $this->attributes();
         $sanitized = [];
         foreach($attributes as $key => $value ) {
-            $sanitized[$key] = self::$db->escape_string($value);
+          $sanitized[$key] = self::$db->escape_string($value);
         }
         return $sanitized;
     }

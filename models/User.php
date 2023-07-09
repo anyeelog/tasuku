@@ -23,10 +23,11 @@ class User extends ActiveRecord {
     $this->password = $arr['password'] ?? '';
     $this->passwordrepeat = $arr['passwordrepeat'] ?? '';
     $this->token = $arr['token'] ?? '';
-    $this->verified = $arr['verified'] ?? '';
+    $this->verified = $arr['verified'] ?? 0;
 
   }
 
+  // Validates signup
   public function validate() {
 
     if(!$this->name) {
@@ -47,6 +48,55 @@ class User extends ActiveRecord {
 
     return self::$alerts;
 
+  }
+
+  // Validates login
+  public function validateLogin() {
+
+    if(!$this->email) {
+      self::$alerts['error'][] = 'Email is required.';
+    }
+    if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+      self::$alerts['error'][] = 'Invalid email.';
+    }
+    if(!$this->password) {
+      self::$alerts['error'][] = 'Password is required.';
+    }
+    return self::$alerts;
+
+  }
+
+  // Validates email
+  public function validateEmail() {
+    if(!$this->email) {
+      self::$alerts['error'][] = 'Email is required.';
+    }
+    if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+      self::$alerts['error'][] = 'Invalid email.';
+    }
+    return self::$alerts;
+  }
+
+  // Validates password
+  public function validatePassword() {
+    if(!$this->password) {
+      self::$alerts['error'][] = 'Password is required.';
+    }
+    if(strlen($this->password) < 6) {
+      self::$alerts['error'][] = 'Password must contain at least 6 characters.';
+    }
+    return self::$alerts;
+  }
+
+  // Hashes password
+  public function hashPassword() {
+    $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+  }
+
+  // Creates token
+  public function createToken() {
+    $this->token = uniqid();
+    // $this->token = md5(uniqid());
   }
 
 }

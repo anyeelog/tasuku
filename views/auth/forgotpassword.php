@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <h1>Tasuku.</h1>
+    <h1><a href="/">Tasuku.</a></h1>
     <p class="tagline">Create and manage your projects</p>
 
 
@@ -10,11 +10,23 @@
       <p class="page-description">Forgot password?</p>
       <p style="padding: 0 50px;">Don't worry! Enter your email address and we'll send you a reset link.</p>
 
-      <form action="/forgotpassword" class="form" method="POST">
+      <form action="/forgotpassword" class="form" method="POST" novalidate>
 
         <div class="camp">
           <input type="email" id="email" placeholder="Your email" name="email">
         </div>
+
+        <ul class="alerts">
+          <?php
+            foreach($alerts as $key => $alert) {
+              foreach($alert as $message) {
+          ?>
+            <li class="alert <?php echo $key ?>"><?php echo $message; ?></li>
+          <?php
+              }
+            }
+          ?>
+        </ul>
 
         <input type="submit" class="button" value="Send Reset Link">
       </form>

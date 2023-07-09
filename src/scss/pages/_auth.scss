@@ -8,16 +8,44 @@
 
   h1 {
     margin-bottom: 4rem;
+
+    a {
+      color: v.$black;
+    }
   }
+
+
 
 }
 
 .alerts {
-  text-align: left;
   margin-top: 3rem;
-  color: v.$red;
+  padding: 0;
 
-  .alert {
+
+  .error {
     margin-top: .5rem;
+    margin-left: 3rem;
+    color: v.$red;
+    text-align: left;
+  }
+
+  .errordiv {
+    background-color: v.$red;
+    color: v.$white;
+    font-weight: 500;
+    border-radius: 2rem;
+    padding: 2rem;
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    margin-top: 4rem;
+  }
+
+  .success {
+    margin-top: .5rem;
+    margin-left: 3rem;
+    color: v.$green;
+    text-align: left;
   }
 }
