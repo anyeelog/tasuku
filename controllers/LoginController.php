@@ -32,9 +32,8 @@ class LoginController {
             $_SESSION['name'] = $user->name;
             $_SESSION['email'] = $user->email;
             $_SESSION['login'] = true;
-            debug($_SESSION);
             // Redirect
-            header('Location: /home');
+            header('Location: /dashboard');
           } else {
             User::setAlert('error', 'Incorrect password.');
           }
@@ -52,8 +51,9 @@ class LoginController {
   }
 
   public static function logout() {
-
-
+    session_start();
+    $_SESSION = [];
+    header('Location: /');
   }
 
   public static function signup(Router $router) {
