@@ -71,7 +71,8 @@ class DashboardController {
 
     $router->render('dashboard/project', [
       'title' => '| ' . $project->project,
-      'project' => $project->project
+      'project' => $project->project,
+      'description' => $project->description
     ]);
 
   }

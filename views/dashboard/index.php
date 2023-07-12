@@ -2,26 +2,43 @@
 
   <h3>You have things to do!</h3>
 
-  <?php if(count($projects) === 0) { ?>
+  <div class="dash-index">
+    <div class="index-projects">
 
-    <h2>There are no projects yet! Do you want to create one?</h2>
-    <a href="/newproject" class="<?php echo ($title === '| Create Project') ? 'active' : '' ; ?>">New Project</a>
+      <h4 class="projects-title">Your projects</h4>
 
-  <?php } else { ?>
+      <?php if(count($projects) === 0) { ?>
 
-    <ul class="projects-list">
-      <?php foreach($projects as $project) { ?>
+        <h2>There are no projects yet! Do you want to create one?</h2>
+        <a href="/newproject" class="<?php echo ($title === '| Create Project') ? 'active' : '' ; ?>">New Project</a>
 
-        <li class="project-container">
-          <a href="/project?id=<?php echo $project->url; ?>">
-            <h4><?php echo $project->project; ?></h4>
-            <p><?php echo $project->description; ?></p>
-          </a>
-        </li>
+      <?php } else { ?>
+
+        <div class="projects-list">
+          <?php foreach($projects as $project) { ?>
+
+              <a href="/project?id=<?php echo $project->url; ?>">
+                <h4><?php echo $project->project; ?></h4>
+
+                <?php if($project->description) { ?>
+                  <p class="project-description"><?php echo substr($project->description, 0, 110) . '...'; ?></p>
+                <?php } else { ?>
+                  <p class="project-description">(No description)</p>
+                <?php } ?>
+              </a>
+
+          <?php } ?>
+          </div>
 
       <?php } ?>
-    </ul>
+    </div> <!-- .projects -->
 
-  <?php } ?>
+
+    <div class="index-tasks">
+
+      <h4 class="tasks-title">Tasks due today</h4>
+
+    </div> <!-- .tasks -->
+  </div> <!-- .dash-index -->
 
 <?php include_once __DIR__ . '/dash-footer.php'; ?>

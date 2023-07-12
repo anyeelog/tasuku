@@ -3,6 +3,8 @@
 
 .dashboard {
 
+  display: block;
+
   @include m.tablet {
     display: flex;
     height: 100vh;
@@ -44,12 +46,13 @@
 }
 
 .topbar {
-  padding: 5.5rem 4rem 0 15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
 
   @include m.tablet {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 5.5rem 4rem 0 15rem;
   }
 
   p {
@@ -71,5 +74,9 @@
 }
 
 .dash-body {
-  padding: 0 15rem;
+  padding: 4rem;
+
+  @include m.tablet {
+    padding: 0 15rem;
+  }
 }

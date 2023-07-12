@@ -1,0 +1,32 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .form-container {
+    max-width: 60rem;
+    transform: translateY(-30rem);
+    opacity: 0;
+    transition: transform 500ms,
+                opacity 200ms;
+
+
+    &.animate {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 1;
+    }
+  }
+
+  .form {
+    margin: 0 auto;
+  }
+
+}
