@@ -41,12 +41,42 @@
       if(e.target.classList.contains('close-modal')) {
         modal.remove();
       }
+      if(e.target.classList.contains('submit-new-task')) {
+        submitNewTask();
+      }
 
     });
 
-
-
     document.querySelector('body').appendChild(modal);
+  }
+
+  function submitNewTask() {
+    const task = document.querySelector('#task').value.trim();
+    const projectSelect = document.querySelector('#project-select').value.trim();
+    if(task === '') {
+      showAlert('Task name is required', 'error', document.querySelector('.options'));
+      return;
+    }
+    if(projectSelect === '') {
+      showAlert('Choose a project', 'error', document.querySelector('.options'));
+      return;
+    }
+
+    addTask(task);
+  }
+
+  function showAlert(message, type, reference) {
+
+    // Removes previous alert (avoids duplicate)
+    const previousAlert = document.querySelector('.alerts');
+    if(previousAlert){ previousAlert.remove() };
+
+    // Inserts alert
+    const alerts = document.createElement('UL');
+    alerts.classList.add('alerts');
+    alerts.innerHTML = `<li class="alert ${type}">${message}</li>`;
+
+    reference.parentElement.insertBefore(alerts, reference);
   }
 
 })();
