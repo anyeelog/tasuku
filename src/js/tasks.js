@@ -34,6 +34,16 @@
       form.classList.add('animate');
     }, 0);
 
+    modal.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log(e);
+
+      if(e.target.classList.contains('close-modal')) {
+        modal.remove();
+      }
+
+    });
+
 
 
     document.querySelector('body').appendChild(modal);

@@ -10,7 +10,7 @@
   bottom: 0;
 
   .form-container {
-    max-width: 60rem;
+    max-width: 50rem;
     transform: translateY(-30rem);
     opacity: 0;
     transition: transform 500ms,
@@ -27,6 +27,19 @@
 
   .form {
     margin: 0 auto;
+  }
+
+  .close-modal {
+    background-color: transparent;
+    border: none;
+    color: v.$yellow;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-top: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
 }
