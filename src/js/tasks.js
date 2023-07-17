@@ -36,7 +36,6 @@
 
     modal.addEventListener('click', function(e) {
       e.preventDefault();
-      console.log(e);
 
       if(e.target.classList.contains('close-modal')) {
         modal.remove();
@@ -57,10 +56,10 @@
       showAlert('Task name is required', 'error', document.querySelector('.options'));
       return;
     }
-    if(projectSelect === '') {
-      showAlert('Choose a project', 'error', document.querySelector('.options'));
-      return;
-    }
+    // if(projectSelect === '') {
+    //   showAlert('Choose a project', 'error', document.querySelector('.options'));
+    //   return;
+    // }
 
     addTask(task);
   }
@@ -77,6 +76,42 @@
     alerts.innerHTML = `<li class="alert ${type}">${message}</li>`;
 
     reference.parentElement.insertBefore(alerts, reference);
+  }
+
+  async function addTask(task) {
+    const data = new FormData();
+    data.append('name', task);
+    data.append('project_id', getProject())
+
+    try {
+
+      const url = 'http://localhost:3000/api/task';
+      const response = await fetch(url, {
+        method: 'POST',
+        body: data
+      });
+
+      const result = await response.json();
+
+      showAlert(result.message, result.type, document.querySelector('.options'));
+
+      if(result.type === 'success') {
+        const modal = document.querySelector('.modal');
+        modal.remove();
+      }
+
+
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  function getProject() {
+    const projectParams = new URLSearchParams(window.location.search);
+    const project = Object.fromEntries(projectParams.entries());
+    return project.id;
   }
 
 })();
