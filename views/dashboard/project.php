@@ -8,9 +8,11 @@
     <p class="project-description">(No description)</p>
   <?php } ?>
 
-  <div class="tasks">
-    <div class="task"></div>
-  </div>
+  <ul id="tasks" class="tasks">
+
+  </ul>
 
 
 <?php include_once __DIR__ . '/dash-footer.php'; ?>
+
+<?php $script = '<script src="build/js/tasks.js"></script>'; ?>

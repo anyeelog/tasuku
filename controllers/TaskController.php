@@ -8,6 +8,22 @@ class TaskController {
 
   public static function index() {
 
+    $projectId = $_GET['id'];
+
+    if(!$projectId) {
+      header('Location: /dashboard');
+    }
+
+    $project = Project::where('url', $projectId);
+    session_start();
+    if(!$project || $project->user_id !== $_SESSION['id']) {
+      header('Location: /404');
+    }
+
+    $tasks = Task::belongsTo('project_id', $project->id);
+
+    echo json_encode(['tasks' => $tasks]);
+
   }
 
   public static function create() {

@@ -1,11 +1,76 @@
 (function() {
 
+  getTasks();
+
   // Button to show add task form
   const addTaskButton = document.querySelector('#add-task');
   addTaskButton.addEventListener('click', showForm);
 
-  function showForm() {
+  async function getTasks() {
+    try {
+      const id = getProject();
+      const url = `/api/tasks?id=${id}`;
+      const response = await fetch(url);
+      const result = await response.json();
+      const { tasks } = result;
 
+      showTasks(tasks);
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  function showTasks(tasks) {
+    if(tasks.length === 0) {
+      const tasksContainer = document.querySelector('#tasks');
+      const emptyText = document.createElement('LI');
+      emptyText.textContent = 'There are no tasks';
+      emptyText.classList.add('no-tasks');
+      tasksContainer.appendChild(emptyText);
+      return;
+    }
+
+    const status = {
+      0: 'Incompleted',
+      1: 'Completed'
+    }
+
+    tasks.forEach(task => {
+      const taskContainer = document.createElement('LI');
+      taskContainer.dataset.taskId = task.id;
+      taskContainer.classList.add('task');
+
+      const taskName = document.createElement('P');
+      taskName.textContent = task.name;
+
+      const optionsDiv = document.createElement('DIV');
+      optionsDiv.classList.add('options');
+
+      // Buttons
+      const btnTaskStatus = document.createElement('BUTTON');
+      btnTaskStatus.classList.add('task-state');
+      btnTaskStatus.classList.add(`${status[task.status].toLowerCase()}`);
+      btnTaskStatus.textContent = status[task.status];
+      btnTaskStatus.dataset.statusTask = task.status;
+
+      const btnDeleteTask = document.createElement('BUTTON');
+      btnDeleteTask.classList.add('delete-task');
+      btnDeleteTask.dataset.idTask = task.id;
+      btnDeleteTask.textContent = 'Delete';
+
+      optionsDiv.appendChild(btnTaskStatus);
+      optionsDiv.appendChild(btnDeleteTask);
+
+      taskContainer.appendChild(taskName);
+      taskContainer.appendChild(optionsDiv);
+
+      const taskList = document.querySelector('#tasks');
+      taskList.appendChild(taskContainer);
+    })
+  }
+
+  function showForm() {
     // Inserting add task form to the interface
     const modal = document.createElement('DIV');
     modal.classList.add('modal');
@@ -99,8 +164,6 @@
         const modal = document.querySelector('.modal');
         modal.remove();
       }
-
-
 
     } catch (error) {
       console.log(error);
