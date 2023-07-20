@@ -31,6 +31,8 @@ class TaskController {
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       session_start();
+
+      // Checks if project exists
       $project = Project::where('url', $_POST['project_id']);
 
       if(!$project || $project->user_id !== $_SESSION['id']) {
@@ -60,9 +62,42 @@ class TaskController {
   }
 
   public static function update() {
+
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+      session_start();
+
+      // Checks if project exists
+      $project = Project::where('url', $_POST['project_id']);
+
+      if(!$project || $project->user_id !== $_SESSION['id']) {
+        $response = [
+          'type' => 'error',
+          'message' => 'There was an error while updating the task.'
+        ];
+        echo json_encode($response);
+        return;
+      }
+
+      // If everything is correct, updates task
+      $task = new Task($_POST);
+      $task->project_id = $project->id;
+      $result = $task->save();
+
+      if($result) {
+
+        $response = [
+          'type' => 'success',
+          'id' => $task->id,
+          'project_id' => $project->id
+        ];
+
+        echo json_encode(['response' => $response]);
+
+      }
+
     }
+
   }
 
   public static function delete() {

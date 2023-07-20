@@ -182,10 +182,10 @@
   function changeTaskStatus(task) {
     const newStatus = task.status === "1" ? "0" : "1";
     task.status = newStatus;
-    updateTaskStatus();
+    updateTaskStatus(task);
   }
 
-  function updateTaskStatus(task) {
+  async function updateTaskStatus(task) {
     const {id, name, status, project_id} = task;
     const data = new FormData();
 
@@ -195,8 +195,18 @@
     data.append('project_id', project_id);
     data.append('url', getProject());
 
-    for(let value of data.values()) {
-      console.log(value);
+    try {
+      const url = 'http://localhost:3000/api/task/update';
+      const response = await fetch(url, {
+        method: 'POST',
+        body: data
+      });
+
+      const result = await response.json();
+      console.log(response);
+
+    } catch(error) {
+      console.log(error);
     }
 
 
