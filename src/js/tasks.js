@@ -1,6 +1,7 @@
 (function() {
 
   getTasks();
+  let tasks = [];
 
   // Button to show add task form
   const addTaskButton = document.querySelector('#add-task');
@@ -12,16 +13,18 @@
       const url = `/api/tasks?id=${id}`;
       const response = await fetch(url);
       const result = await response.json();
-      const { tasks } = result;
+      tasks = result.tasks;
 
-      showTasks(tasks);
+      showTasks();
 
     } catch(error) {
       console.log(error);
     }
   }
 
-  function showTasks(tasks) {
+  function showTasks() {
+    cleanTasks();
+
     if(tasks.length === 0) {
       const tasksContainer = document.querySelector('#tasks');
       const emptyText = document.createElement('LI');
@@ -53,6 +56,9 @@
       btnTaskStatus.classList.add(`${status[task.status].toLowerCase()}`);
       btnTaskStatus.textContent = status[task.status];
       btnTaskStatus.dataset.statusTask = task.status;
+      btnTaskStatus.onclick = function() {
+        changeTaskStatus({...task});
+      }
 
       const btnDeleteTask = document.createElement('BUTTON');
       btnDeleteTask.classList.add('delete-task');
@@ -81,9 +87,6 @@
         <form class="form form-task">
           <div class="camp">
             <input type="text" name="task" id="task" placeholder="Task title">
-          </div>
-          <div class="camp">
-            <input type="text" name="project-select" id="project-select" placeholder="Select project">
           </div>
           <div class="options">
             <input type="submit" class="submit-new-task" value="Add task">
@@ -116,21 +119,16 @@
 
   function submitNewTask() {
     const task = document.querySelector('#task').value.trim();
-    const projectSelect = document.querySelector('#project-select').value.trim();
+
     if(task === '') {
       showAlert('Task name is required', 'error', document.querySelector('.options'));
       return;
     }
-    // if(projectSelect === '') {
-    //   showAlert('Choose a project', 'error', document.querySelector('.options'));
-    //   return;
-    // }
 
     addTask(task);
   }
 
   function showAlert(message, type, reference) {
-
     // Removes previous alert (avoids duplicate)
     const previousAlert = document.querySelector('.alerts');
     if(previousAlert){ previousAlert.remove() };
@@ -163,11 +161,44 @@
       if(result.type === 'success') {
         const modal = document.querySelector('.modal');
         modal.remove();
+
+        // Add task to tasks
+        const taskObj = {
+          id: String(result.id),
+          name: task,
+          status: "0",
+          project_id: result.project_id
+        }
+
+        tasks = [...tasks, taskObj];
+        showTasks();
       }
 
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function changeTaskStatus(task) {
+    const newStatus = task.status === "1" ? "0" : "1";
+    task.status = newStatus;
+    updateTaskStatus();
+  }
+
+  function updateTaskStatus(task) {
+    const {id, name, status, project_id} = task;
+    const data = new FormData();
+
+    data.append('id', id);
+    data.append('name', name);
+    data.append('status', status);
+    data.append('project_id', project_id);
+    data.append('url', getProject());
+
+    for(let value of data.values()) {
+      console.log(value);
+    }
+
 
   }
 
@@ -175,6 +206,14 @@
     const projectParams = new URLSearchParams(window.location.search);
     const project = Object.fromEntries(projectParams.entries());
     return project.id;
+  }
+
+  function cleanTasks() {
+    const tasksContainer = document.querySelector('#tasks');
+
+    while(tasksContainer.firstChild) {
+      tasksContainer.removeChild(tasksContainer.firstChild);
+    }
   }
 
 })();

@@ -3,10 +3,11 @@
   <h3><?php echo $project; ?></h3>
 
   <?php if($description) { ?>
-    <p class="project-description"><?php echo substr($description, 0, 110) . '...'; ?></p>
+    <p class="project-description"><?php echo $description; ?></p>
   <?php } else { ?>
     <p class="project-description">(No description)</p>
   <?php } ?>
+
 
   <ul id="tasks" class="tasks">
 

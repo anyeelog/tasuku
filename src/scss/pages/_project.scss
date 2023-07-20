@@ -1,2 +1,21 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
+
+
+.tasks {
+  list-style: none;
+  padding: 0;
+
+  .no-tasks {
+    margin-top: 5rem;
+  }
+}
+
+.add-task, .add-project {
+  background-color: v.$black;
+  padding: 1.5rem 4rem;
+  color: v.$white;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 1.2rem;
+}

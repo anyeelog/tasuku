@@ -21,7 +21,7 @@
                 <h4><?php echo $project->project; ?></h4>
 
                 <?php if($project->description) { ?>
-                  <p class="project-description"><?php echo substr($project->description, 0, 110) . '...'; ?></p>
+                  <p class="project-description"><?php echo substr($project->description, 0, 60) . '...'; ?></p>
                 <?php } else { ?>
                   <p class="project-description">(No description)</p>
                 <?php } ?>

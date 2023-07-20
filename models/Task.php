@@ -20,4 +20,5 @@ class Task extends ActiveRecord {
     $this->project_id = $args['project_id'] ?? '';
 
   }
+
 }
