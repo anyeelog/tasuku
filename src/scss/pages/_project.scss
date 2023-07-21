@@ -5,9 +5,22 @@
 .tasks {
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 
   .no-tasks {
     margin-top: 5rem;
+  }
+
+  .task {
+    padding: 3.5rem 4rem;
+    border-radius: 2rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  p {
+    margin: 0;
   }
 }
 
