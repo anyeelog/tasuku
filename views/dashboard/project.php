@@ -9,7 +9,11 @@
   <?php } ?>
 
 
-  <ul id="tasks" class="tasks"></ul>
+  <ul id="tasks" class="tasks">
+    <?php if(!$task->description) { ?>
+      <p class="project-description">(No description)</p>
+    <?php } ?>
+  </ul>
 
 
 <?php include_once __DIR__ . '/dash-footer.php'; ?>

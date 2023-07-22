@@ -39,6 +39,9 @@
     line-height: 1.2;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    max-height: 10rem;
+    overflow-y: scroll;
+
   }
 
   button {
@@ -47,7 +50,39 @@
     padding: 0;
   }
 
-  .options {
+  /* CSS */
+  .toggle-task {
+    background-color: v.$black;
+    border-radius: 1.2rem;
+    color: v.$white;
+    cursor: pointer;
+    font-weight: 600;
+    outline: none;
+    padding: 1.5rem 4rem;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+    margin-top: 1rem;
+  }
+
+  .toggle-task:disabled {
+    pointer-events: none;
+  }
+
+  .toggle-task:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+
+  .toggle-task:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+
+  .task-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,11 +90,8 @@
     .task-status {
       color: v.$yellow;
       font-weight: 500;
-      font-size: 2rem;
-    }
-
-    .incompleted {
-
+      font-size: 1.6rem;
+      margin: 0;
     }
   }
 

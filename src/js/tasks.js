@@ -48,16 +48,22 @@
       const taskHeader = document.createElement('DIV');
       taskHeader.classList.add('task-header');
 
+
       const taskName = document.createElement('H4');
       taskName.classList.add('task-name');
       taskName.textContent = task.name;
 
       const taskDescription = document.createElement('P');
       taskDescription.classList.add('task-description');
-      taskDescription.textContent = task.description;
+
+      if(!task.description) {
+        taskDescription.textContent = '(No description)';
+      } else {
+        taskDescription.textContent = task.description;
+      }
 
       const taskFooter = document.createElement('DIV');
-      taskFooter.classList.add('options');
+      taskFooter.classList.add('task-footer');
 
       const taskStatus = document.createElement('P');
       taskStatus.classList.add('task-status');
@@ -69,7 +75,8 @@
       const btnToggleStatus = document.createElement('BUTTON');
       btnToggleStatus.classList.add('toggle-task');
       btnToggleStatus.dataset.idTask = task.id;
-      btnToggleStatus.textContent = status[task.status];
+      // btnToggleStatus.textContent = status[task.status];
+      btnToggleStatus.textContent = 'Complete Task';
       btnToggleStatus.onclick = function() {
         changeTaskStatus({...task});
       }
@@ -85,13 +92,16 @@
 
       // Organizing task container
       taskContainer.appendChild(taskHeader);
+
       taskContainer.appendChild(taskDescription);
+
       taskContainer.appendChild(taskFooter);
 
       taskHeader.appendChild(taskName);
       btnDeleteTask.appendChild(trashIcon);
       taskHeader.appendChild(btnDeleteTask);
 
+      taskFooter.appendChild(btnToggleStatus);
       taskFooter.appendChild(taskStatus);
 
 
