@@ -38,6 +38,8 @@
 
       <h4 class="tasks-title">Tasks due today</h4>
 
+      <ul id="tasks" class="tasks"></ul>
+
     </div> <!-- .tasks -->
   </div> <!-- .dash-index -->
 

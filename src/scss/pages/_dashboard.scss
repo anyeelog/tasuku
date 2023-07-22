@@ -52,7 +52,7 @@
   padding: 4rem;
 
   @include m.tablet {
-    padding: 5.5rem 4rem 0 15rem;
+    padding: 5.5rem 4rem 0 10rem;
   }
 
   p {
@@ -68,6 +68,6 @@
   padding: 4rem;
 
   @include m.tablet {
-    padding: 0 15rem;
+    padding: 0 6rem 0 10rem;
   }
 }

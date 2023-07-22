@@ -32,12 +32,12 @@
   .close-modal {
     background-color: transparent;
     border: none;
-    color: v.$yellow;
     font-size: 1.6rem;
     font-weight: 500;
     margin-top: 2rem;
 
     &:hover {
+      text-decoration: underline;
       cursor: pointer;
     }
   }

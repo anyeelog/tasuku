@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  margin-top: 5rem;
 
   .no-tasks {
     margin-top: 5rem;
@@ -19,10 +20,56 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
-  p {
-    margin: 0;
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .task-name, .task-description {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+
+  .task-name {
+    font-weight: 600;
+  }
+
+  .task-description {
+    line-height: 1.2;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .task-status {
+      color: v.$yellow;
+      font-weight: 500;
+      font-size: 2rem;
+    }
+
+    .incompleted {
+
+    }
+  }
+
+  .delete-task:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
 }
+
 
 .add-task, .add-project {
   background-color: v.$black;

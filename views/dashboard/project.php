@@ -9,9 +9,7 @@
   <?php } ?>
 
 
-  <ul id="tasks" class="tasks">
-
-  </ul>
+  <ul id="tasks" class="tasks"></ul>
 
 
 <?php include_once __DIR__ . '/dash-footer.php'; ?>

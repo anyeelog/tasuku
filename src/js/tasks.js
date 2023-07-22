@@ -40,36 +40,63 @@
     }
 
     tasks.forEach(task => {
+      // HTML for task
       const taskContainer = document.createElement('LI');
       taskContainer.dataset.taskId = task.id;
       taskContainer.classList.add('task');
 
-      const taskName = document.createElement('P');
+      const taskHeader = document.createElement('DIV');
+      taskHeader.classList.add('task-header');
+
+      const taskName = document.createElement('H4');
+      taskName.classList.add('task-name');
       taskName.textContent = task.name;
 
-      const optionsDiv = document.createElement('DIV');
-      optionsDiv.classList.add('options');
+      const taskDescription = document.createElement('P');
+      taskDescription.classList.add('task-description');
+      taskDescription.textContent = task.description;
+
+      const taskFooter = document.createElement('DIV');
+      taskFooter.classList.add('options');
+
+      const taskStatus = document.createElement('P');
+      taskStatus.classList.add('task-status');
+      taskStatus.classList.add(`${status[task.status].toLowerCase()}`);
+      taskStatus.textContent = status[task.status];
+      taskStatus.dataset.statusTask = task.status;
 
       // Buttons
-      const btnTaskStatus = document.createElement('BUTTON');
-      btnTaskStatus.classList.add('task-state');
-      btnTaskStatus.classList.add(`${status[task.status].toLowerCase()}`);
-      btnTaskStatus.textContent = status[task.status];
-      btnTaskStatus.dataset.statusTask = task.status;
-      btnTaskStatus.onclick = function() {
+      const btnToggleStatus = document.createElement('BUTTON');
+      btnToggleStatus.classList.add('toggle-task');
+      btnToggleStatus.dataset.idTask = task.id;
+      btnToggleStatus.textContent = status[task.status];
+      btnToggleStatus.onclick = function() {
         changeTaskStatus({...task});
       }
+
+      const trashIcon = document.createElement('IMG');
+      trashIcon.setAttribute('src', 'https://img.icons8.com/?size=512&id=G3ke6AwujrRv&format=png');
+      trashIcon.setAttribute('height', '32px');
+      trashIcon.setAttribute('alt', 'Delete button');
 
       const btnDeleteTask = document.createElement('BUTTON');
       btnDeleteTask.classList.add('delete-task');
       btnDeleteTask.dataset.idTask = task.id;
-      btnDeleteTask.textContent = 'Delete';
 
-      optionsDiv.appendChild(btnTaskStatus);
-      optionsDiv.appendChild(btnDeleteTask);
+      // Organizing task container
+      taskContainer.appendChild(taskHeader);
+      taskContainer.appendChild(taskDescription);
+      taskContainer.appendChild(taskFooter);
 
-      taskContainer.appendChild(taskName);
-      taskContainer.appendChild(optionsDiv);
+      taskHeader.appendChild(taskName);
+      btnDeleteTask.appendChild(trashIcon);
+      taskHeader.appendChild(btnDeleteTask);
+
+      taskFooter.appendChild(taskStatus);
+
+
+      // taskFooter.appendChild(btnDeleteTask);
+      // add due date taskFooter.appendChild(btnTaskStatus);
 
       const taskList = document.querySelector('#tasks');
       taskList.appendChild(taskContainer);
@@ -87,6 +114,9 @@
         <form class="form form-task">
           <div class="camp">
             <input type="text" name="task" id="task" placeholder="Task title">
+          </div>
+          <div class="camp">
+            <input type="text" name="task-description" id="task-description" placeholder="Task description">
           </div>
           <div class="options">
             <input type="submit" class="submit-new-task" value="Add task">
@@ -119,13 +149,14 @@
 
   function submitNewTask() {
     const task = document.querySelector('#task').value.trim();
+    const description = document.querySelector('#task-description').value.trim();
 
     if(task === '') {
       showAlert('Task name is required', 'error', document.querySelector('.options'));
       return;
     }
 
-    addTask(task);
+    addTask(task, description);
   }
 
   function showAlert(message, type, reference) {
@@ -141,9 +172,10 @@
     reference.parentElement.insertBefore(alerts, reference);
   }
 
-  async function addTask(task) {
+  async function addTask(task, description) {
     const data = new FormData();
     data.append('name', task);
+    data.append('description', description);
     data.append('project_id', getProject())
 
     try {
@@ -166,6 +198,7 @@
         const taskObj = {
           id: String(result.id),
           name: task,
+          description: description,
           status: "0",
           project_id: result.project_id
         }
@@ -186,11 +219,12 @@
   }
 
   async function updateTaskStatus(task) {
-    const {id, name, status, project_id} = task;
+    const {id, name, description, status, project_id} = task;
     const data = new FormData();
 
     data.append('id', id);
     data.append('name', name);
+    data.append('description', description);
     data.append('status', status);
     data.append('project_id', project_id);
     data.append('url', getProject());
@@ -203,7 +237,10 @@
       });
 
       const result = await response.json();
-      console.log(response);
+
+      if(result.response.type === 'success') {
+        console.log('Correctly updated.')
+      }
 
     } catch(error) {
       console.log(error);
