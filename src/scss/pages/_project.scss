@@ -15,9 +15,13 @@
   }
 
   .task {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     padding: 3.5rem 4rem;
     border-radius: 2rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 27rem;
   }
 
   .task-header {
@@ -39,7 +43,7 @@
     line-height: 1.2;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    max-height: 10rem;
+    max-height: 8rem;
     overflow-y: scroll;
 
   }
@@ -51,41 +55,12 @@
   }
 
   /* CSS */
-  .toggle-task {
-    background-color: v.$black;
-    border-radius: 1.2rem;
-    color: v.$white;
-    cursor: pointer;
-    font-weight: 600;
-    outline: none;
-    padding: 1.5rem 4rem;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    will-change: transform;
-    margin-top: 1rem;
-  }
-
-  .toggle-task:disabled {
-    pointer-events: none;
-  }
-
-  .toggle-task:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-  }
-
-  .toggle-task:active {
-    box-shadow: none;
-    transform: translateY(0);
-  }
 
   .task-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
 
     .task-status {
       color: v.$yellow;
@@ -100,14 +75,4 @@
     cursor: pointer;
   }
 
-}
-
-
-.add-task, .add-project {
-  background-color: v.$black;
-  padding: 1.5rem 4rem;
-  color: v.$white;
-  font-size: 1.6rem;
-  font-weight: 700;
-  border-radius: 1.2rem;
 }

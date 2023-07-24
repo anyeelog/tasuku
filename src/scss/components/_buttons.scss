@@ -1,0 +1,64 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.add-task, .add-project {
+  background-color: v.$black;
+  border-radius: 1.2rem;
+  color: v.$white;
+  cursor: pointer;
+  font-weight: 600;
+  outline: none;
+  padding: 1.5rem 4rem;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+.add-task:disabled, .add-project:disabled {
+  pointer-events: none;
+}
+
+.add-task:hover, .add-project:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.add-task:active, .add-project:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.tasks, .tasks-dash {
+  .toggle-task {
+    background-color: v.$black;
+    border-radius: 1.2rem;
+    color: v.$white;
+    cursor: pointer;
+    font-weight: 600;
+    outline: none;
+    padding: 1.5rem 4rem;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+  }
+
+  .toggle-task:disabled {
+    pointer-events: none;
+  }
+
+  .toggle-task:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+
+  .toggle-task:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+}

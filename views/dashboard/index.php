@@ -38,7 +38,56 @@
 
       <h4 class="tasks-title">Tasks due today</h4>
 
-      <ul id="tasks" class="tasks"></ul>
+      <ul id="tasks-dash" class="tasks-dash">
+
+        <li class="task-dash">
+          <div class="task-header">
+            <h4 class="task-name"> Start the project</h4>
+            <button class="delete-task" data-id-task="1"><img src="https://img.icons8.com/?size=512&amp;id=G3ke6AwujrRv&amp;format=png" height="32px" alt="Delete button"></button>
+          </div>
+
+          <p class="task-description">
+            Duis odio turpis, porttitor sed tristique non, lacinia quis orci. Nullam eget nisl eu sapien.
+          </p>
+
+          <div class="task-footer">
+            <button class="toggle-task" data-id-task="1">Complete</button>
+            <p class="task-status incompleted" data-status-task="0">Incompleted</p>
+          </div>
+        </li> <!-- .task-dash -->
+
+        <li class="task-dash">
+          <div class="task-header">
+            <h4 class="task-name"> Start the project</h4>
+            <button class="delete-task" data-id-task="1"><img src="https://img.icons8.com/?size=512&amp;id=G3ke6AwujrRv&amp;format=png" height="32px" alt="Delete button"></button>
+          </div>
+
+          <p class="task-description">
+            Duis odio turpis, porttitor sed tristique non, lacinia quis orci. Nullam eget nisl eu sapien.
+          </p>
+
+          <div class="task-footer">
+            <button class="toggle-task" data-id-task="1">Complete</button>
+            <p class="task-status incompleted" data-status-task="0">Incompleted</p>
+          </div>
+        </li> <!-- .task-dash -->
+
+        <li class="task-dash">
+          <div class="task-header">
+            <h4 class="task-name"> Start the project</h4>
+            <button class="delete-task" data-id-task="1"><img src="https://img.icons8.com/?size=512&amp;id=G3ke6AwujrRv&amp;format=png" height="32px" alt="Delete button"></button>
+          </div>
+
+          <p class="task-description">
+            Duis odio turpis, porttitor sed tristique non, lacinia quis orci. Nullam eget nisl eu sapien.
+          </p>
+
+          <div class="task-footer">
+            <button class="toggle-task" data-id-task="1">Complete</button>
+            <p class="task-status incompleted" data-status-task="0">Incompleted</p>
+          </div>
+        </li> <!-- .task-dash -->
+      </ul>
 
     </div> <!-- .tasks -->
   </div> <!-- .dash-index -->
