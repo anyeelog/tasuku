@@ -68,7 +68,7 @@ class TaskController {
       session_start();
 
       // Checks if project exists
-      $project = Project::where('url', $_POST['project_id']);
+      $project = Project::where('url', $_POST['url']);
 
       if(!$project || $project->user_id !== $_SESSION['id']) {
         $response = [

@@ -229,6 +229,7 @@
   }
 
   async function updateTaskStatus(task) {
+
     const {id, name, description, status, project_id} = task;
     const data = new FormData();
 
@@ -236,7 +237,6 @@
     data.append('name', name);
     data.append('description', description);
     data.append('status', status);
-    data.append('project_id', project_id);
     data.append('url', getProject());
 
     try {
