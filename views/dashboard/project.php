@@ -17,4 +17,9 @@
 
 <?php include_once __DIR__ . '/dash-footer.php'; ?>
 
-<?php $script = '<script src="build/js/tasks.js"></script>'; ?>
+<?php $script = '
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="build/js/tasks.js"></script>
+      ';
+
+?>

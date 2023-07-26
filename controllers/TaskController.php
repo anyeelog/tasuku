@@ -103,6 +103,25 @@ class TaskController {
   public static function delete() {
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+      session_start();
+
+      // Checks if project exists
+      $project = Project::where('url', $_POST['url']);
+
+      if(!$project || $project->user_id !== $_SESSION['id']) {
+        $response = [
+          'type' => 'error',
+          'message' => 'There was an error while updating the task.'
+        ];
+        echo json_encode($response);
+        return;
+      }
+
+      $task = new Task($_POST);
+      $result = $task->delete();
+
+      echo json_encode(['result' => $result]);
+
     }
   }
 

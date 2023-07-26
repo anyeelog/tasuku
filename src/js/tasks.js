@@ -89,6 +89,9 @@
       const btnDeleteTask = document.createElement('BUTTON');
       btnDeleteTask.classList.add('delete-task');
       btnDeleteTask.dataset.idTask = task.id;
+      btnDeleteTask.onclick = function() {
+        confirmDeleteTask({...task});
+      }
 
       // Organizing task container
       taskContainer.appendChild(taskHeader);
@@ -249,14 +252,75 @@
       const result = await response.json();
 
       if(result.response.type === 'success') {
-        console.log('Correctly updated.')
+
+        tasks = tasks.map(taskMemory => {
+
+          if(taskMemory.id === id) {
+            taskMemory.status = status;
+          }
+          return taskMemory;
+
+        });
+        showTasks();
       }
 
     } catch(error) {
       console.log(error);
     }
 
+  }
 
+  function confirmDeleteTask(task) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteTask(task);
+      }
+    })
+  }
+
+  async function deleteTask(task) {
+
+    const {id, name, description, status} = task;
+    const data = new FormData();
+
+    data.append('id', id);
+    data.append('name', name);
+    data.append('description', description);
+    data.append('status', status);
+    data.append('url', getProject());
+
+    try {
+      const url = 'http://localhost:3000/api/task/delete';
+      const response = await fetch(url, {
+        method: 'POST',
+        body: data
+      });
+
+      const result = await response.json();
+
+      if(result.result) {
+        Swal.fire(
+          'Deleted!',
+          'The task has been deleted.',
+          'success'
+        )
+
+        tasks = tasks.filter(taskMemory => taskMemory.id !== task.id);
+        showTasks();
+      }
+
+
+    } catch (error) {
+
+    }
   }
 
   function getProject() {
