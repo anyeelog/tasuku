@@ -52,6 +52,10 @@
       const taskName = document.createElement('H4');
       taskName.classList.add('task-name');
       taskName.textContent = task.name;
+      taskName.onclick = function() {
+        console.log(task);
+        showEditForm({...task});
+      };
 
       const taskDescription = document.createElement('P');
       taskDescription.classList.add('task-description');
@@ -95,9 +99,7 @@
 
       // Organizing task container
       taskContainer.appendChild(taskHeader);
-
       taskContainer.appendChild(taskDescription);
-
       taskContainer.appendChild(taskFooter);
 
       taskHeader.appendChild(taskName);
@@ -117,6 +119,7 @@
   }
 
   function showForm() {
+
     // Inserting add task form to the interface
     const modal = document.createElement('DIV');
     modal.classList.add('modal');
@@ -152,24 +155,73 @@
         modal.remove();
       }
       if(e.target.classList.contains('submit-new-task')) {
-        submitNewTask();
-      }
+        const taskName = document.querySelector('#task').value.trim();
+        const taskDescription = document.querySelector('#task-description').value.trim();
 
+        if(taskName === '') {
+          showAlert('Task name is required', 'error', document.querySelector('.options'));
+          return;
+        }
+
+        addTask(taskName, taskDescription);
+      }
     });
 
     document.querySelector('body').appendChild(modal);
   }
 
-  function submitNewTask() {
-    const task = document.querySelector('#task').value.trim();
-    const description = document.querySelector('#task-description').value.trim();
+  function showEditForm(task) {
 
-    if(task === '') {
-      showAlert('Task name is required', 'error', document.querySelector('.options'));
-      return;
-    }
+    // Inserting add task form to the interface
+    const modal = document.createElement('DIV');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+      <div class="form-container">
+        <p class="page-description">Edit task</p>
+        <p style="padding: 0 50px;">Don't worry! Enter your email address and we'll send you a reset link.</p>
+        <form class="form form-task">
+          <div class="camp">
+            <input type="text" name="task" id="task" placeholder="Task title" value="${task.name ? task.name : ''}">
+          </div>
+          <div class="camp">
+            <input type="text" name="task-description" id="task-description" placeholder="Task description" value="${task.description ? task.description : ''}">
+          </div>
+          <div class="options">
+            <input type="submit" class="submit-new-task" value="Edit task">
+            <button type="button" class="close-modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    `;
 
-    addTask(task, description);
+    // Animation when form appears
+    setTimeout(() => {
+      const form = document.querySelector('.form-container');
+      form.classList.add('animate');
+    }, 0);
+
+    modal.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      if(e.target.classList.contains('close-modal')) {
+        modal.remove();
+      }
+      if(e.target.classList.contains('submit-new-task')) {
+        const taskName = document.querySelector('#task').value.trim();
+        const taskDescription = document.querySelector('#task-description').value.trim();
+
+        if(taskName === '') {
+          showAlert('Task name is required', 'error', document.querySelector('.options'));
+          return;
+        }
+
+        task.name = taskName;
+        task.description = taskDescription;
+        updateTask(task);
+      }
+    });
+
+    document.querySelector('body').appendChild(modal);
   }
 
   function showAlert(message, type, reference) {
@@ -228,12 +280,12 @@
   function changeTaskStatus(task) {
     const newStatus = task.status === "1" ? "0" : "1";
     task.status = newStatus;
-    updateTaskStatus(task);
+    updateTask(task);
   }
 
-  async function updateTaskStatus(task) {
+  async function updateTask(task) {
 
-    const {id, name, description, status, project_id} = task;
+    const {id, name, description, status} = task;
     const data = new FormData();
 
     data.append('id', id);
@@ -253,10 +305,23 @@
 
       if(result.response.type === 'success') {
 
+        // Swal.fire(
+        //   result.response.message,
+        //   result.response.message,
+        //   'success'
+        // )
+
+        const modal = document.querySelector('.modal');
+        if(modal) {
+          modal.remove();
+        }
+
         tasks = tasks.map(taskMemory => {
 
           if(taskMemory.id === id) {
             taskMemory.status = status;
+            taskMemory.name = name;
+            taskMemory.description = description;
           }
           return taskMemory;
 
@@ -316,7 +381,6 @@
         tasks = tasks.filter(taskMemory => taskMemory.id !== task.id);
         showTasks();
       }
-
 
     } catch (error) {
 
