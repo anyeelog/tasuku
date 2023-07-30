@@ -2,6 +2,7 @@
 
   getTasks();
   let tasks = [];
+  let filtered = [];
 
   // Button to show add task form
   const addTaskButton = document.querySelector('#add-task');
@@ -22,10 +23,32 @@
     }
   }
 
+  // Filter tasks
+  const filters = document.querySelectorAll('#filters input[type="radio"]');
+  filters.forEach(radio => {
+    radio.addEventListener('input', filterTasks);
+  });
+
+  function filterTasks(e) {
+    const filter = e.target.value;
+
+    if(filter !== '') {
+      filtered = tasks.filter(task => task.status === filter);
+    } else {
+      filtered = [];
+    }
+    showTasks();
+  }
+
+
   function showTasks() {
     cleanTasks();
+    totalIncompleted();
+    totalCompleted();
 
-    if(tasks.length === 0) {
+    const arrayTasks = filtered.length ? filtered : tasks;
+
+    if(arrayTasks.length === 0) {
       const tasksContainer = document.querySelector('#tasks');
       const emptyText = document.createElement('LI');
       emptyText.textContent = 'There are no tasks';
@@ -39,7 +62,7 @@
       1: 'Completed'
     }
 
-    tasks.forEach(task => {
+    arrayTasks.forEach(task => {
       // HTML for task
       const taskContainer = document.createElement('LI');
       taskContainer.dataset.taskId = task.id;
@@ -224,6 +247,28 @@
     document.querySelector('body').appendChild(modal);
   }
 
+  function totalIncompleted() {
+    const totalIncompleted = tasks.filter(task => task.status === "0");
+    const radioIncompleted = document.querySelector('#incompleted-tasks');
+
+    if(totalIncompleted.length === 0) {
+      radioIncompleted.disabled = true;
+    } else {
+      radioIncompleted.disabled = false;
+    }
+  }
+
+  function totalCompleted() {
+    const totalCompleted = tasks.filter(task => task.status === "1");
+    const radioCompleted = document.querySelector('#completed-tasks');
+
+    if(totalCompleted.length === 0) {
+      radioCompleted.disabled = true;
+    } else {
+      radioCompleted.disabled = false;
+    }
+  }
+
   function showAlert(message, type, reference) {
     // Removes previous alert (avoids duplicate)
     const previousAlert = document.querySelector('.alerts');
@@ -305,11 +350,11 @@
 
       if(result.response.type === 'success') {
 
-        // Swal.fire(
-        //   result.response.message,
-        //   result.response.message,
-        //   'success'
-        // )
+        Swal.fire(
+          result.response.message,
+          result.response.message,
+          'success'
+        )
 
         const modal = document.querySelector('.modal');
         if(modal) {
@@ -400,5 +445,6 @@
       tasksContainer.removeChild(tasksContainer.firstChild);
     }
   }
+
 
 })();

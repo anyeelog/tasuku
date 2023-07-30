@@ -76,3 +76,41 @@
   }
 
 }
+
+// Filters
+
+.filters {
+  margin-top: 2rem;
+
+  h2 {
+    font-size: 1.6rem;
+
+    @include m.tablet {
+      margin: 0;
+    }
+  }
+
+  .filters-inputs {
+    @include m.tablet {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+
+  .camp {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    @include m.tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  input[type="radio"] {
+    accent-color: v.$black;
+  }
+}
