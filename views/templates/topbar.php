@@ -1,5 +1,5 @@
 <div class="topbar-mobile">
-  <h1>Tasuku.</h1>
+  <h1><a href="/dashboard">Tasuku.</a></h1>
 
   <div class="menu">
     <img id="mobile-menu" src="build/img/menu.svg" alt="Menu button">
@@ -9,7 +9,7 @@
 <aside class="sidebar-mobile">
 
   <div class="sidebar-head">
-    <h1>Tasuku.</h1>
+    <h1><a href="/dashboard">Tasuku.</a></h1>
     <img id="mobile-menu-close" src="build/img/close.svg" alt="Close menu button">
   </div>
 

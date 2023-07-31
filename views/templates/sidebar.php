@@ -1,6 +1,6 @@
 <aside class="sidebar">
 
-  <h2>Tasuku.</h2>
+  <h2><a href="/dashboard">Tasuku.</a></h2>
 
   <nav class="sidebar-nav">
     <a href="/dashboard" class="<?php echo ($title === '| Dashboard' || $_SERVER['PATH_INFO'] === '/project') ? 'active' : '' ; ?>">Projects</a>

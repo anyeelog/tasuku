@@ -20,6 +20,10 @@
   h1 {
     margin: 0;
   }
+
+  a {
+    color: v.$black;
+  }
 }
 
 .topbar {
@@ -43,22 +47,26 @@
 }
 
 .sidebar-mobile {
-  opacity: 0;
-  transition: opacity 500ms;
-  height: 0;
-  overflow: hidden;
-  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  margin-right: -100%;
+  transition: all 0.3s ease-in-out;
+  z-index: 100;
+  color: v.$white;
+  background-color: v.$black;
 
   &.show {
-    opacity: 1;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: v.$white;
-    background-color: v.$black;
+    margin-right: 0;
+
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // color: v.$white;
+    // background-color: v.$black;
   }
 
   @include m.tablet {
@@ -67,6 +75,10 @@
 
   h1 {
     margin: 0;
+  }
+
+  a {
+    color: v.$white;
   }
 
   .sidebar-head {
@@ -114,6 +126,10 @@
 
   h2 {
     padding: 4rem;
+  }
+
+  a {
+    color: v.$black;
   }
 
   .sidebar-nav {
