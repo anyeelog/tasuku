@@ -32,7 +32,7 @@
 
 
   <ul id="tasks" class="tasks">
-    <?php if(!$task->description) { ?>
+    <?php if(!$description) { ?>
       <p class="project-description">(No description)</p>
     <?php } ?>
   </ul>
