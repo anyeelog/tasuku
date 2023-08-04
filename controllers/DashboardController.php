@@ -3,6 +3,7 @@
 namespace Controllers;
 use MVC\Router;
 use Model\Project;
+use Model\User;
 
 
 class DashboardController {
@@ -81,8 +82,24 @@ class DashboardController {
     session_start();
     isAuth();
 
+    $alerts = [];
+    $user = User::find($_SESSION['id']);
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+      $user->sync($_POST);
+      $alerts = $user->validateProfile();
+
+      if(empty($alerts)) {
+        // Save user
+        $user->save();
+      }
+    }
+
     $router->render('dashboard/profile', [
-      'title' => '| Profile'
+      'title' => '| Profile',
+      'user' => $user,
+      'alerts' => $alerts
     ]);
 
   }

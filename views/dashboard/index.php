@@ -42,12 +42,12 @@
 
         <li class="task-dash">
           <div class="task-header">
-            <h4 class="task-name"> Start the project</h4>
+            <h4 class="task-name">Create a list of icons</h4>
             <button class="delete-task" data-id-task="1"><img src="https://img.icons8.com/?size=512&amp;id=G3ke6AwujrRv&amp;format=png" height="32px" alt="Delete button"></button>
           </div>
 
           <p class="task-description">
-            Duis odio turpis, porttitor sed tristique non, lacinia quis orci. Nullam eget nisl eu sapien.
+            Design new icons for the company. They don't want round icons and must have red color...
           </p>
 
           <div class="task-footer">
@@ -58,12 +58,12 @@
 
         <li class="task-dash">
           <div class="task-header">
-            <h4 class="task-name"> Start the project</h4>
+            <h4 class="task-name">Talk with Jason</h4>
             <button class="delete-task" data-id-task="1"><img src="https://img.icons8.com/?size=512&amp;id=G3ke6AwujrRv&amp;format=png" height="32px" alt="Delete button"></button>
           </div>
 
           <p class="task-description">
-            Duis odio turpis, porttitor sed tristique non, lacinia quis orci. Nullam eget nisl eu sapien.
+           Need to confirm that the doc doesn't have any errors.
           </p>
 
           <div class="task-footer">
@@ -74,12 +74,12 @@
 
         <li class="task-dash">
           <div class="task-header">
-            <h4 class="task-name"> Start the project</h4>
+            <h4 class="task-name">Grocery shopping for tonights dinner</h4>
             <button class="delete-task" data-id-task="1"><img src="https://img.icons8.com/?size=512&amp;id=G3ke6AwujrRv&amp;format=png" height="32px" alt="Delete button"></button>
           </div>
 
           <p class="task-description">
-            Duis odio turpis, porttitor sed tristique non, lacinia quis orci. Nullam eget nisl eu sapien.
+            Ingredients needed: carrots, apple, lamb, onions...
           </p>
 
           <div class="task-footer">

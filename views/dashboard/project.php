@@ -3,9 +3,9 @@
   <h3><?php echo $project; ?></h3>
 
   <?php if($description) { ?>
-    <p class="project-description"><?php echo $description; ?></p>
+    <p class="projectp-description"><?php echo $description; ?></p>
   <?php } else { ?>
-    <p class="project-description">(No description)</p>
+    <p class="projectp-description">(No description)</p>
   <?php } ?>
 
   <div id="filters" class="filters">

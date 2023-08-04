@@ -6,9 +6,13 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: 3rem;
+
+  @include m.tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .no-tasks {
     margin-top: 5rem;
@@ -113,4 +117,8 @@
   input[type="radio"] {
     accent-color: v.$black;
   }
+}
+
+.projectp-description {
+  width: 65%;
 }

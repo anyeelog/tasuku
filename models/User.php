@@ -88,6 +88,17 @@ class User extends ActiveRecord {
     return self::$alerts;
   }
 
+  // Validates user profile
+  public function validateProfile() {
+    if(!$this->name) {
+      self::$alerts['error'][] = 'Name is required.';
+    }
+    if(!$this->email) {
+      self::$alerts['error'][] = 'Email is required.';
+    }
+    return self::$alerts;
+  }
+
   // Hashes password
   public function hashPassword() {
     $this->password = password_hash($this->password, PASSWORD_BCRYPT);
