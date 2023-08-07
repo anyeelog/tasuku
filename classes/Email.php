@@ -20,9 +20,9 @@ class Email {
     $mail->isSMTP();
     $mail->Host = 'sandbox.smtp.mailtrap.io';
     $mail->SMTPAuth = true;
-    $mail->Port = 2525;
-    $mail->Username = 'f968e4f24d49b0';
-    $mail->Password = 'a24c3fd23f02f1';
+    $mail->Port = $_ENV['MAIL_PORT'];
+    $mail->Username =   $_ENV['MAIL_USERNAME'];
+    $mail->Password = $_ENV['MAIL_PASS'];
 
     $mail->setFrom('account@tasuku.com');
     $mail->addAddress('account@tasuku.com', 'tasuku.com');
