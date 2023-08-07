@@ -27,7 +27,7 @@
 
   @include m.tablet {
     width: 65%;
-    padding-right: 10rem;
+    padding-right: 6rem;
   }
 
   .projects-title {
@@ -160,6 +160,10 @@
       font-weight: 500;
       font-size: 1.6rem;
       margin: 0;
+
+      &.completed {
+        color: v.$green;
+      }
     }
   }
 

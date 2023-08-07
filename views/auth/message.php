@@ -1,16 +1,18 @@
-<div class="login">
+<div class="auth-bg">
+  <div class="login">
 
-  <div class="container">
+    <div class="container">
 
-    <h1><a href="/">Tasuku.</a></h1>
-    <p class="tagline">Create and manage your projects</p>
+      <h1><a href="/">Tasuku.</a></h1>
+      <p class="tagline">Create and manage your projects</p>
 
 
-    <div class="form-container">
-      <p class="page-description">Verify the account</p>
-      <p style="padding: 0 50px;">Instructions were sent to your email! Check it and verify your account.</p>
+      <div class="form-container">
+        <p class="page-description">Verify the account</p>
+        <p style="padding: 0 50px;">Instructions were sent to your email! Check it and verify your account.</p>
+      </div>
+
     </div>
 
   </div>
-
 </div>

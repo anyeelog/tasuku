@@ -9,7 +9,7 @@ function showForm() {
   modal.innerHTML = `
     <div class="form-container">
       <p class="page-description">Add a new project</p>
-      <p style="padding: 0 50px;">Don't worry! Enter your email address and we'll send you a reset link.</p>
+      <p style="margin: 20px 0 40px 0;">Create the project you want to work in and start organizing your tasks!</p>
       <form class="form form-task">
         <div class="camp">
           <input type="text" name="project" id="project" placeholder="Project title">

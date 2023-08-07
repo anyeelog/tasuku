@@ -1,9 +1,16 @@
 @use 'base/variables' as v;
 
+.auth-bg {
+  background-color: v.$yellow;
+  min-height: 100vh;
+}
+
 .login {
 
   padding: 4rem 0;
-  background-color: v.$yellow;
+  background-image: url('/build/img/auth-bg.png');
+  background-size: 100%;
+  background-position: 0rem -12rem;
   min-height: 100vh;
 
   h1 {
