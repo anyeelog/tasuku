@@ -27,17 +27,10 @@ Tasuku is a simple task manager application designer to help individuals to effi
 
 ![tasks](https://github.com/anyeelog/tasuku/assets/62017211/fdcb12b6-4904-4264-a25e-ddfbcc243b02)
 
-https://github.com/anyeelog/tasuku/assets/62017211/ca628cc1-b7d3-43a4-997a-7761a3e986c1
+https://github.com/anyeelog/tasuku/assets/62017211/6b4b9f74-cf40-4377-8c6e-1ccc3128c488
 
-
-https://github.com/anyeelog/tasuku/assets/62017211/d7a84422-5a10-43a5-8474-3cfe0751fd51
-
+https://github.com/anyeelog/tasuku/assets/62017211/736d1da8-c40e-4e15-9a85-1945906ccb2f
 
 https://github.com/anyeelog/tasuku/assets/62017211/faf006b7-b9f1-4f3d-b725-0806f7a387ac
 
-
-
 https://github.com/anyeelog/tasuku/assets/62017211/7e505ad8-41b2-4732-9484-98ef568b066e
-
-
-
